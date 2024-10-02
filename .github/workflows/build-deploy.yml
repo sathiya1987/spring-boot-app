@@ -1,10 +1,10 @@
  name: build and deploy spring-api
-  on:
-    push:
+ on:
+   push:
       branches:
         - main
 
-  jobs:
+ jobs:
     build-deploy:
       name: build and deploy spring-api
       runs-on: ubuntu-20.04
