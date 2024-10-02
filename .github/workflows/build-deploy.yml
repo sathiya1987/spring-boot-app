@@ -1,4 +1,4 @@
- name: build and deploy spring-api
+ name: Build and Deploy Backend-API
  on:
    push:
       branches:
@@ -6,7 +6,7 @@
 
  jobs:
     build-deploy:
-      name: build and deploy spring-api
+      name: Backend-API
       runs-on: ubuntu-20.04
       steps:
         - name: checkout code
@@ -20,8 +20,7 @@
 
         - name: unit tests
           run: mvn -B test --file pom.xml
-          
-
+         
         - name: build the app
           run: |
             mvn clean install -DskipTests
@@ -36,13 +35,6 @@
             username: ${{ secrets.DOCKER_HUB_USERNAME }}
             password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-        # Build the Docker image
-       #- name: Build Docker image
-        #  run: docker build -t my-spring-boot-app .
-
-       # - name: Tag Docker image
-       #   run: | 
-       #    docker tag my-spring-boot-app my-spring-boot-app:v1.0.0
         - name: Set up Docker Buildx
           uses: docker/setup-buildx-action@v3
         - name: Push
