@@ -39,6 +39,8 @@
        # - name: Tag Docker image
        #   run: | 
        #    docker tag my-spring-boot-app my-spring-boot-app:v1.0.0
+        - name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v3
         - name: Push
           uses: docker/build-push-action@v6
           with:
