@@ -20,11 +20,15 @@
 
         - name: unit tests
           run: mvn -B test --file pom.xml
+          
 
         - name: build the app
           run: |
             mvn clean install -DskipTests
             mvn -B package --file pom.xml
+            
+        - name: List target directory contents
+          run: ls -la target/     
 
         - name: login to docker hub
           uses: docker/login-action@v1
