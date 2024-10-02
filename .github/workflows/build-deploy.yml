@@ -39,8 +39,8 @@
         - name: Tag Docker image
           run: | 
            docker tag my-spring-boot-app my-spring-boot-app:v1.0.0
-        - name: Build and push
+        - name: Push
           uses: docker/build-push-action@v6
           with:
             push: true
-            tags: ${{ vars.DOCKER_HUB_USERNAME }}/my-spring-boot-app:v1.0.0   
+            tags: ${{ secrets.DOCKER_HUB_USERNAME }}/my-spring-boot-app:v1.0.0   
