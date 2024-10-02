@@ -2,7 +2,7 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-COPY target/api-springboot-0.0.1-SNAPSHOT.jar /app/my-spring-boot-app.jar
+COPY /home/runner/.m2/repository/com/rest-api/api-springboot/0.0.1-SNAPSHOT/api-springboot-0.0.1-SNAPSHOT.jar /app/my-spring-boot-app.jar
 
 EXPOSE 8080
 
