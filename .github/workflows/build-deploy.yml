@@ -43,4 +43,4 @@
 
     # Push the Docker image to Docker Hub
         - name: Push Docker image
-          run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/my-spring-boot-app:v1.0.0
+          run: docker push my-spring-boot-app:v1.0.0
