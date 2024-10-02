@@ -26,24 +26,20 @@
             mvn clean install -DskipTests
             mvn -B package --file pom.xml
 
-        - name: build the docker image
-          uses: docker/build-push-action@v4
-          with:
-            context: .
-            dockerfile: Dockerfile
-            push: false
-            tags: my-spring-boot-app ${{ secrets.DOCKER_HUB_USERNAME }}/my-spring-boot-app:2
-
         - name: login to docker hub
           uses: docker/login-action@v1
           with:
             username: ${{ secrets.DOCKER_HUB_USERNAME }}
             password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-        - name: push the docker image to docker hub
-          uses: docker/build-push-action@v4
-          with:
-            context: .
-            dockerfile: Dockerfile
-            push: true
-            tags: my-spring-boot-app ${{ secrets.DOCKER_HUB_USERNAME }}/my-spring-boot-app:2
+        # Build the Docker image
+        - name: Build Docker image
+          run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/my-spring-boot-app:latest .
+
+        - name: Tag Docker image
+          run: | 
+            docker tag ${{ secrets.DOCKER_HUB_USERNAME }}/my-spring-boot-app:latest ${{ secrets.DOCKER_USERNAME }}/my-spring-boot-app:1  
+
+    # Push the Docker image to Docker Hub
+        - name: Push Docker image
+          run: docker push ${{ secrets.DOCKER_USERNAME }}/my-spring-boot-app:1
