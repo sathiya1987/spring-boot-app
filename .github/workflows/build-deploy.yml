@@ -33,12 +33,12 @@
             password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
         # Build the Docker image
-        - name: Build Docker image
-          run: docker build -t my-spring-boot-app .
+       #- name: Build Docker image
+        #  run: docker build -t my-spring-boot-app .
 
-        - name: Tag Docker image
-          run: | 
-           docker tag my-spring-boot-app my-spring-boot-app:v1.0.0
+       # - name: Tag Docker image
+       #   run: | 
+       #    docker tag my-spring-boot-app my-spring-boot-app:v1.0.0
         - name: Push
           uses: docker/build-push-action@v6
           with:
